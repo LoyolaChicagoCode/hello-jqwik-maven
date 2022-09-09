@@ -6,8 +6,9 @@ compile / javacOptions += "-Xlint:all"
 
 javaOptions += "-enableassertions"
 
-libraryDependencies ++= Seq(
- "com.novocode"   %  "junit-interface" % "0.11"   % Test
+libraryDependencies in ThisBuild ++= Seq(
+  "net.aichler" % "jupiter-interface" % "0.11.0" % Test,
+  "net.jqwik"   % "jqwik"             % "1.6.5"  % Test
 )
 
 jacocoReportSettings := JacocoReportSettings()
