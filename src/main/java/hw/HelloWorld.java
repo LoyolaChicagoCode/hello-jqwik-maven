@@ -9,4 +9,8 @@ public class HelloWorld {
   public int getYear() {
     return 2017;
   }
+
+  public String echoTwice(final String msg) {
+    return msg + msg;
+  }
 }

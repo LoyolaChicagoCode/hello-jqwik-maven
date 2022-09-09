@@ -32,6 +32,7 @@ local.sbt
 project/.bloop/
 project/metals.sbt
 project/project/
+.jqwik-database
 
 # Emacs files
 *~

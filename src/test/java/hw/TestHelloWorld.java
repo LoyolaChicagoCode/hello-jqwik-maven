@@ -1,40 +1,39 @@
 package hw;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import net.jqwik.api.*;
 
 public class TestHelloWorld {
 
-  private HelloWorld fixture;
+  final HelloWorld fixture = new HelloWorld();
 
-  @Before
-  public void setUp() throws Exception {
-    fixture = new HelloWorld();
+  @Property
+  boolean lengthOfEchoTwiceIsTwiceLengthOfArg(@ForAll final String aString) {
+    return fixture.echoTwice(aString).length() == 2 * aString.length();
   }
 
-  @After
-  public void tearDown() throws Exception {
-    fixture = null;
-  }
+  @Property
+	boolean absoluteValueOfAllNumbersIsPositive(@ForAll final int anInteger) {
+		return Math.abs(anInteger) >= 0;
+	}
 
-  @Test
-  public void getMessage() {
-    assertNotNull(fixture);
-    assertEquals("hello world", fixture.getMessage());
-  }
+  @Property
+	void lengthOfConcatenatedStringIsGreaterThanLengthOfEach(
+		@ForAll final String string1, @ForAll final String string2
+	) {
+		final var conc = string1 + string2;
+		assertTrue(conc.length() > string1.length());
+		assertTrue(conc.length() > string2.length());
+	}  
 
-  @Test
-  public void getMessage2() { // this test is broken - fix it!
-    assertNull(fixture);
-    assertEquals("hello world", fixture.getMessage());
-  }
+  @Example
+	void squareRootOf16is4() { 
+		assertEquals(4.0, Math.sqrt(16), 0.01);
+	}
 
-  @Test
-  public void getYear() { // this test is OK, fix HelloWorld.java to make it pass!
-    assertNotNull(fixture);
-    assertEquals(2022, fixture.getYear());
-  }
+	@Example
+	boolean add1plu3is4() {
+		return (1 + 3) == 4;
+	}
 }
