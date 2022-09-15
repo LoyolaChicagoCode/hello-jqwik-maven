@@ -6,7 +6,7 @@ compile / javacOptions += "-Xlint:all"
 
 javaOptions += "-enableassertions"
 
-libraryDependencies in ThisBuild ++= Seq(
+ThisBuild / libraryDependencies ++= Seq(
   "net.aichler" % "jupiter-interface" % "0.11.0" % Test,
   "net.jqwik"   % "jqwik"             % "1.6.5"  % Test
 )
