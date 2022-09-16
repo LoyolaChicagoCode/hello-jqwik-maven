@@ -10,7 +10,11 @@ public class HelloWorld {
     return 2017;
   }
 
+  public String echo(final String msg) {
+    return msg;
+  }
+
   public String echoTwice(final String msg) {
-    return msg + msg;
+    return msg + " " + msg;
   }
 }

@@ -14,9 +14,9 @@ public class TestHelloWorld {
   }
 
   @Property
-	boolean absoluteValueOfAllNumbersIsPositive(@ForAll final int anInteger) {
-		return Math.abs(anInteger) >= 0;
-	}
+  boolean absoluteValueOfAllNumbersIsPositive(@ForAll final int anInteger) {
+	return Math.abs(anInteger) >= 0;
+  }
 
   @Property
 	void lengthOfConcatenatedStringIsGreaterThanLengthOfEach(
@@ -28,12 +28,42 @@ public class TestHelloWorld {
 	}  
 
   @Example
-	void squareRootOf16is4() { 
-		assertEquals(4.0, Math.sqrt(16), 0.01);
-	}
+  void squareRootOf16is4() { 
+    assertEquals(4.0, Math.sqrt(16), 0.01);
+  }
 
-	@Example
-	boolean add1plu3is4() {
-		return (1 + 3) == 4;
-	}
+  @Example
+  boolean add1plu3is4() {
+    return (1 + 3) == 4;
+  }
+
+  @Example
+  void testHello1() {
+	assertEquals("hello", fixture.echo("hello"));
+  }
+
+  @Example
+  void testHello2() {
+	assertEquals("", fixture.echo(""));
+  }
+
+  @Property
+  boolean echoReturnsItsArgument(@ForAll final String s) {
+	return fixture.echo(s).equals(s);
+  }
+
+  @Example
+  void testHello3() {
+	assertEquals(" ", fixture.echoTwice(""));
+  }
+
+  @Example
+  void testHello4() {
+	assertEquals("world world", fixture.echoTwice("world"));
+  }
+
+  @Property
+  boolean echoTwiceReturnsItsArgumentTwice(@ForAll final String s) {
+	return fixture.echoTwice(s).equals(s + " " + s);
+  }
 }
