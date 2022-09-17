@@ -1,4 +1,4 @@
-name := "hello-java"
+name := "hello-jqwik-java"
 
 version := "0.2"
 
@@ -22,5 +22,7 @@ jacocoReportSettings := JacocoReportSettings()
       clazz = 100)
   )
   .withFormats(JacocoReportFormats.HTML)
+
+jacocoExcludes := Seq("**.Main*")
 
 enablePlugins(JavaAppPackaging)
