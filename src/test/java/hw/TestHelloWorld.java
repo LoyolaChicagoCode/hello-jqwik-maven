@@ -1,8 +1,12 @@
 package hw;
 
+import java.util.List;
+import java.util.Collections;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import net.jqwik.api.*;
+import net.jqwik.api.constraints.*;
 
 public class TestHelloWorld {
 
@@ -24,6 +28,13 @@ public class TestHelloWorld {
     final var conc = string1 + string2;
     assertTrue(conc.length() > string1.length());
     assertTrue(conc.length() > string2.length());
+  }
+
+  @Property
+  boolean lengthOfConcatenatedStringIsGreaterThanLengthOfEachAsBoolean(
+      @ForAll final String string1, @ForAll final String string2) {
+    final var conc = string1 + string2;
+    return conc.length() > string1.length() && conc.length() > string2.length();
   }
 
   @Example
@@ -65,4 +76,42 @@ public class TestHelloWorld {
   boolean echoTwiceReturnsItsArgumentTwice(@ForAll final String s) {
     return fixture.echoTwice(s).equals(s + " " + s);
   }
+
+  @Property
+  void inputOneWord(@ForAll @AlphaChars final String w) {
+    final var sut = null; // word frequency distribution calculator
+    final var input = List.of(w).iterator();
+    final var result = sut.process(input);
+    assertEquals(1, result.size());
+    assertEquals(1 , result.get(w.length));
+  }
+
+  @Property
+  void inputFiveEqualWords(@ForAll @AlphaChars final String w) {
+    final var sut = null; // word frequency distribution calculator
+    final var input = List.of(w, w, w, w, w).iterator();
+    final var result = sut.process(input);
+    assertEquals(1, result.size());
+    assertEquals(5, result.get(w.length));
+  }
+
+  @Property
+  void inpuNEqualWords(@ForAll @AlphaChars final String w, @ForAll @Positive final int n) {
+    final var sut = null; // word frequency distribution calculator
+    final var input = Collections.nCopies(n, w).iterator();
+    final var result = sut.process(input);
+    assertEquals(1, result.size());
+    assertEquals(n, result.get(w.length));
+  }
+
+  @Property
+  void inputArbitraryIterator(@ForAll final List<String> values) {
+    final var sut = null; // word frequency distribution calculator
+    final var input = values.iterator();
+    final var size = values.size();
+    final var result = sut.process(input);
+    final var sum = // sum of all frequency values
+    assertEquals(sum, size);
+  }
+
 }
