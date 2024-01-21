@@ -6,9 +6,11 @@ compile / javacOptions += "-Xlint:all"
 
 javaOptions += "-enableassertions"
 
+ThisBuild / scalaVersion := "2.13.12"
+
 ThisBuild / libraryDependencies ++= Seq(
-  "net.aichler" % "jupiter-interface" % "0.11.0" % Test,
-  "net.jqwik"   % "jqwik"             % "1.6.5"  % Test
+  "net.aichler" % "jupiter-interface" % "0.11.1" % Test,
+  "net.jqwik"   % "jqwik"             % "1.8.2"  % Test
 )
 
 jacocoReportSettings := JacocoReportSettings()
