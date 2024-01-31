@@ -11,6 +11,8 @@ ThisBuild / libraryDependencies ++= Seq(
   "net.jqwik"   % "jqwik"             % "1.8.2"  % Test
 )
 
+Test / parallelExecution := false
+
 jacocoReportSettings := JacocoReportSettings()
   .withThresholds(
     JacocoThresholds(
