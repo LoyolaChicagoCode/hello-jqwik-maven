@@ -12,6 +12,16 @@ public class TestHelloWorld {
 
   final HelloWorld fixture = new HelloWorld();
 
+  @Example
+  boolean testGetMessage() {
+    return "hello world".equals(fixture.getMessage());
+  }
+
+  @Example
+  boolean testGetYear() {
+    return 2025 == fixture.getYear();
+  }
+
   @Property
   boolean lengthOfEchoTwiceIsTwiceLengthOfArg(@ForAll final String aString) {
     return fixture.echoTwice(aString).length() == 2 * aString.length() + 1;
