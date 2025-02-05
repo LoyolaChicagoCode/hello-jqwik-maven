@@ -1,6 +1,9 @@
 package hw;
 
 import java.util.List;
+
+import org.junit.platform.commons.util.StringUtils;
+
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,6 +23,26 @@ public class TestHelloWorld {
   @Example
   boolean testGetYear() {
     return 2025 == fixture.getYear();
+  }
+
+  @Example
+  boolean testEchoZero() {
+    return "".equals(fixture.echo(""));
+  }
+
+  @Example
+  boolean testEchoOne() {
+    return "x".equals(fixture.echo("x"));
+  }
+
+  @Example
+  boolean testEchoMany2() {
+    return "xy".equals(fixture.echo("xy"));
+  }
+
+  @Example
+  boolean testEchoMany5() {
+    return "hello".equals(fixture.echo("hello"));
   }
 
   @Property
